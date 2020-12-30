@@ -24,3 +24,4 @@ public class MainViewModel extends WDViewModel<IMainRequest> {
     }
 
 }
+

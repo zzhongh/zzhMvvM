@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * 使用ViewPager+Fragment；如果首页不要ViewPager，只是用FragmentManager的add/hide/show，那么请参照MainActivity
  */
-@Route(path = Constant.ACTIVITY_URL_MAIN)
+//@Route(path = Constant.ACTIVITY_URL_MAIN)
 public class MainFromViewPagerActivity extends WDActivity<MainFromViewPagerViewModel, ActivityMainViewPagerBinding> {
 
     private HomeFragment homeFragment;
@@ -128,12 +128,9 @@ public class MainFromViewPagerActivity extends WDActivity<MainFromViewPagerViewM
             }
         });
 
-        viewModel.fragDataShare.observe(this, new Observer<Message>() {
-            @Override
-            public void onChanged(Message message) {
-                if (message.what == 100) {
-                    viewModel.cId.setValue(R.id.home_btn);
-                }
+        viewModel.fragDataShare.observe(this, message -> {
+            if (message.what == 100) {
+                viewModel.cId.setValue(R.id.home_btn);
             }
         });
     }

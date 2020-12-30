@@ -25,8 +25,9 @@ public class CircleViewModel extends WDFragViewModel<IMainRequest> {
     private boolean circleRunning;
     private int circlePage;
     public void requestCircleData(boolean isRefresh){
-        if (circleRunning)
+        if (circleRunning) {
             return;
+        }
 
         if (isRefresh){
             circlePage = 1;

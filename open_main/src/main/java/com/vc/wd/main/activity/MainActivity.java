@@ -23,7 +23,7 @@ import com.vc.wd.main.vm.MainViewModel;
 /**
  * 本页面使用FragmentManager的add/hide/show，如果要使用ViewPager+Fragment，请参照MainFromViewPagerActivity
  */
-//@Route(path = Constant.ACTIVITY_URL_MAIN)
+@Route(path = Constant.ACTIVITY_URL_MAIN)
 public class MainActivity extends WDActivity<MainViewModel, ActivityMainBinding> {
 
     private HomeFragment homeFragment;
@@ -50,18 +50,14 @@ public class MainActivity extends WDActivity<MainViewModel, ActivityMainBinding>
 
         currentFragment = homeFragment;
         FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
-        tx.add(R.id.container, homeFragment)
-                .show(homeFragment).commit();
-        viewModel.cId.observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer checkedId) {
-                if (checkedId == R.id.home_btn) {
-                    showFragment(homeFragment);
-                } else if (checkedId == R.id.circle_btn) {
-                    showFragment(circleFragment);
-                }else if (checkedId == R.id.me_btn){
-                    showFragment(meFragment);
-                }
+        tx.add(R.id.container, homeFragment).show(homeFragment).commit();
+        viewModel.cId.observe(this, checkedId -> {
+            if (checkedId == R.id.home_btn) {
+                showFragment(homeFragment);
+            } else if (checkedId == R.id.circle_btn) {
+                showFragment(circleFragment);
+            }else if (checkedId == R.id.me_btn){
+                showFragment(meFragment);
             }
         });
 

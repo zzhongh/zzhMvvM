@@ -57,8 +57,9 @@ public class CircleFragment extends WDFragment<CircleViewModel, FragCircleBindin
         viewModel.circleData.observe(getActivity(), new Observer<List<Circle>>() {
             @Override
             public void onChanged(List<Circle> circles) {
-                if (circles == null)
+                if (circles == null) {
                     return;
+                }
                 binding.circleList.refreshComplete();
                 binding.circleList.loadMoreComplete();
                 //添加列表并刷新

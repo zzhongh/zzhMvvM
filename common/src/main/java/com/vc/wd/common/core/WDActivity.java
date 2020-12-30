@@ -57,9 +57,11 @@ public abstract class WDActivity<VM extends WDViewModel, VDB extends ViewDataBin
         viewModel.dialog.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean o) {
-                if (o)
+                if (o) {
                     mLoadDialog.show();
-                else mLoadDialog.cancel();
+                } else {
+                    mLoadDialog.cancel();
+                }
             }
         });
         viewModel.finish.observe(this, new Observer<Integer>() {
@@ -158,15 +160,11 @@ public abstract class WDActivity<VM extends WDViewModel, VDB extends ViewDataBin
     private void initLoad() {
         mLoadDialog = new ProgressDialog(this);// 加载框
         mLoadDialog.setCanceledOnTouchOutside(false);
-        mLoadDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-            @Override
-            public boolean onKey(DialogInterface dialog, int keyCode,
-                                 KeyEvent event) {
-                if (mLoadDialog.isShowing() && keyCode == KeyEvent.KEYCODE_BACK) {
-                    cancelLoadDialog();//加载消失的同时
-                }
-                return false;
+        mLoadDialog.setOnKeyListener((dialog, keyCode, event) -> {
+            if (mLoadDialog.isShowing() && keyCode == KeyEvent.KEYCODE_BACK) {
+                cancelLoadDialog();//加载消失的同时
             }
+            return false;
         });
     }
 

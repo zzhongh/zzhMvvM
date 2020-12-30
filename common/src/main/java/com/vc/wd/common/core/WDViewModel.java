@@ -204,7 +204,8 @@ public abstract class WDViewModel<R> extends ViewModel implements LifecycleObser
      * @description 根据返回值{@link #getResponseType()}灵活改变Consumer或者自己直接重写都可以
      */
     protected Consumer getConsumer(final DataCall dataCall) {
-        if (getResponseType() == RESPONSE_TYPE_SDK_BD) {//如果整个项目中只有一个百度的接口，那么不建议修改基类Presenter，请重写getConsumer方法就可以。
+        if (getResponseType() == RESPONSE_TYPE_SDK_BD) {//如果整个项目中只有一个百度的接口，
+            // 那么不建议修改基类Presenter，请重写getConsumer方法就可以。
             return new Consumer<BDResult>() {
                 @Override
                 public void accept(BDResult result) throws Exception {
